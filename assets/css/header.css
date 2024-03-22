@@ -1,0 +1,43 @@
+.navigation{
+    background-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 1px 4px 1px rgba(0, 255, 81, 0.3);
+}
+.navigation a{
+    color: white !important;
+    font-weight: 300;
+    font-style: italic;
+    padding:1rem;
+    font-size: 1.3rem;
+}
+.logreg a{
+    text-decoration: none;
+    color:white;
+
+}
+.navigation a:hover{
+    color: rgb(115, 185, 99) !important
+}
+.logomango{
+    animation: spin 5s linear infinite;
+}
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.stop-animation {
+    animation-play-state: paused;
+}
+.spin-on-hover {
+    transition: transform 0.3s ease-in-out;
+}
+.spin-on-hover:hover {
+    transform: rotate(360deg);
+    cursor: pointer;
+}
+#reglognow{
+    text-decoration: none;
+}

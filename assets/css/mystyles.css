@@ -1,0 +1,70 @@
+ @import url('https://fonts.googleapis.com/css2?family=Ephesis&display=swap');
+ @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css");
+ @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,700;1,300;1,500&display=swap');
+*{
+    box-sizing: border-box;
+    margin: 0;
+    /* font-family: 'Roboto', sans-serif !important; */
+}
+  body {
+    background: #79AC78 url(../images/background/background.jpg) center;
+    min-height: 100vh;
+    /* font-family: "Montserrat", sans-serif; */
+    margin: 0;
+    overflow-x: hidden;
+    color: #fff;
+    font-weight: 400;
+    font-size: 14px; }
+  
+  html {
+    padding:0;
+    position: relative;
+    min-height: 100%;
+    background: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; }
+  
+.compname h1{
+    font-family: 'Ephesis', cursive !important;
+    font-size: 5rem !important;
+    font-weight: 400;
+    padding: 0;
+    margin:0 ;
+}
+.logcard{
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    color:#fdb601 !important;
+}
+.secline{
+    color:rgba(254, 220, 6, 1) !important;
+}
+.socbtns button{
+    color: #79ac78
+}
+.signup a{
+    text-decoration: none;
+}
+.aptname h1 {
+    color: #fdb601 !important;
+    text-shadow: 0px 0px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.housefeat p{
+    color:white;
+    font-size: 1rem !important;
+    margin-top: 1rem
+}
+.card-title{
+    font-weight:700 !important;
+    color:#fdb601 !important;
+    font-style: italic;
+}
+.housefeat{
+    background-color: rgba(26, 114, 91, 0.596) !important;
+}
+.housefeat img{
+    max-width: 100px;
+}
+.housefeat{
+    border: none !important;
+}

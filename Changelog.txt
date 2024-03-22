@@ -1,0 +1,10 @@
+March 22, 2024
+Author: Reymark Enot Timkang ('Mack')
+Fixed numerous depricated issues on PHP version 8.3 and up
+- Added proper property access for deprecated dynamic property issue in the core/URI.php file.
+- Implemented conditional check before calling chr() to handle null parameter in the MX/Loader.php file.
+- Updated code snippet for handling null parameter before calling strtolower() in the MX/Loader.php file.
+- Reordered function parameters to resolve treating optional params as required in the core/MY_Model.php file.
+- Rearranged parameter order to fix treating optional parameters as required in the core/MY_Model.php file.
+- Removed unused package.json file in the assets directory.
+- Created optimized CodeIgniter template by removing unused files, optimizing configurations, minimizing third-party libraries and cleaning up assets.
