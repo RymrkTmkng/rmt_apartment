@@ -6,8 +6,13 @@
     margin: 0;
     /* font-family: 'Roboto', sans-serif !important; */
 }
+:root{
+    --bs-body-font-family: 'Roboto', sans-serif !important;
+    --bs-body-font-size: 2rem !important;
+    --bs-body-font-weight: 700 !important;
+}
   body {
-    background: #79AC78 url(../images/background/background.jpg) center;
+    background: #79AC78 url(../../images/background/background.jpg) center;
     min-height: 100vh;
     /* font-family: "Montserrat", sans-serif; */
     margin: 0;

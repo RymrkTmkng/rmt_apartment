@@ -10,7 +10,7 @@
     font-size: 1.3rem;
 }
 .logreg a{
-    text-decoration: none;
+    text-decoration: none !important;
     color:white;
 
 }
