@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="<?php echo base_url() . "assets/css/mystyles.css" ?>">
+<link rel="stylesheet" href="<?php echo base_url() . "assets/css/header.css" ?>">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js"></script>
