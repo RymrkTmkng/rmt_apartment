@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title><?= $page_title ?></title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <?php include 'includes.php'; ?>
+    <?php include 'includes.php';?>
 </head>
 
 <body>
     <?php
     __load_assets__($__assets__, 'css');
     ?>
-    <div class="container-fluid p-0">
-        <nav class="navbar navbar-expand-lg p-0 navigation ">
+    <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg p-0 navigation ">
             <div class="container-fluid p-0">
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav min-vw-100 d-flex justify-content-around align-items-center">
@@ -39,9 +39,9 @@
                         </li>
                         <li class="nav-item logreg">
                             <?php if ($this->session->has_userdata('user_id')) : ?>
-                                <a href="<?= base_url('logout') ?>">Logout</a>
+                                <a href="<?= base_url('logout') ?>"  class="login-logout">Logout</a>
                             <?php else : ?>
-                                <a href="<?= base_url('login') ?>">Login</a>
+                                <a href="<?= base_url('login') ?>" class="login-logout">Login</a>
                             <?php endif; ?>
 
                         </li>

@@ -1,3 +1,4 @@
+
 var res = null
 
 function sendAjaxFormData(param = {}, isReturn = true){
@@ -136,14 +137,14 @@ function ajax1(url, form) {
     return res;
 }
 
-function swal(title = '', icon = 'success'){
+function swalThen(title = '', icon = 'success', then = null){
     Swal.fire({
     position: 'center',
     icon: icon,
     title: title,
     showConfirmButton: false,
     timer: 1500
-    })
+    }).then(then);
 }
 
 function toast(title, icon = 'success', iconColor = 'green'){

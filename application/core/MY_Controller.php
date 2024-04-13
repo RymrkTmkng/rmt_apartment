@@ -3,6 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class MY_Controller extends MX_Controller
 {
+	private $route;
 
 	public $assets_ = array(
 		'home' => array(
@@ -21,7 +22,7 @@ class MY_Controller extends MX_Controller
 
 	public function __construct()
 	{
-		$route = $this->router->fetch_class();
+		$this->route = $this->router->fetch_class();
 		// if($route == 'login'){
 		// 	if($this->session->has_userdata('logged_in')){
 		// 		redirect(base_url());
@@ -36,7 +37,16 @@ class MY_Controller extends MX_Controller
 	public function load_page($page, $data = array())
 	{
 		$data['__assets__'] = $this->assets_;
-		$this->load->view('includes/head', $data);
+		if ($this->session->has_userdata('role_id')) {
+			$this->load->view('includes/admin-head.php',$data);
+			$this->load->view('includes/sidebar.php',$data);
+			$this->load->view('includes/navigation.php',$data);
+		}else{
+			$this->load->view('includes/head', $data);
+		}
+		if ($this->route != 'home') {
+			$this->load->view('includes/sidebar', $data);
+		}
 		$this->load->view($page, $data);
 		$this->load->view('includes/footer', $data);
 	}

@@ -27,12 +27,13 @@ class Login extends MY_Controller
                 'user_info as info' => 'info.user_info_id = user.user_info_id'
             );
 
-            $user = getrow('user', $option);
+            $user = getrow('user', $option,'row');
             if ($user) {
-                if (password_verify($password, $user[0]['password'])) {
+                if (password_verify($password, $user->password)) {
                     $response['success'] = true;
                     $response['message'] = "Welcome Back!";
-                    $this->session->set_userdata('user_id', $user[0]['user_id']);
+                    $this->session->set_userdata('user_id', $user->user_id);
+                    $this->session->set_userdata('role_id',$user->role_id);
                 } else {
                     $response['message'] = "Password Incorrect!";
                 }
