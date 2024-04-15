@@ -37,13 +37,8 @@ class MY_Controller extends MX_Controller
 	public function load_page($page, $data = array())
 	{
 		$data['__assets__'] = $this->assets_;
-		if ($this->session->has_userdata('role_id')) {
-			$this->load->view('includes/admin-head.php',$data);
-			$this->load->view('includes/sidebar.php',$data);
-			$this->load->view('includes/navigation.php',$data);
-		}else{
-			$this->load->view('includes/head', $data);
-		}
+		$this->load->view('includes/head', $data);
+		$this->load->view('includes/navigation', $data);
 		if ($this->route != 'home') {
 			$this->load->view('includes/sidebar', $data);
 		}
