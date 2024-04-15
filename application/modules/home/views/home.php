@@ -1,5 +1,5 @@
 <div class="row p-1 d-flex justify-content-center">
-    <div class="col-12 text-light compname text-center py-5 aptname">
+    <div class="col-12 text-light compname text-center py-4 aptname">
         <h1>Welcome Home</h1>
 
         <!-- <h6>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea nemo rem consectetur itaque quisquam. Nesciunt impedit quasi obcaecati blanditiis reiciendis!</h6> -->

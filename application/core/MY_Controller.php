@@ -38,8 +38,10 @@ class MY_Controller extends MX_Controller
 	{
 		$data['__assets__'] = $this->assets_;
 		$this->load->view('includes/head', $data);
-		$this->load->view('includes/navigation', $data);
-		if ($this->route != 'home') {
+		if ($this->session->has_userdata('user_id')) {
+			$this->load->view('includes/dashboard-nav', $data);
+		}else{
+			$this->load->view('includes/navigation', $data);
 			$this->load->view('includes/sidebar', $data);
 		}
 		$this->load->view($page, $data);
