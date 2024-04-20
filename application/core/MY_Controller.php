@@ -17,6 +17,18 @@ class MY_Controller extends MX_Controller
 		'dashboard' => array(
 			'css' => array('dashboard.css'),
 			'js'  => array('dashboard.js'),
+		),
+		'room' => array(
+			'css' => array('room.css'),
+			'js'  => array('room.js'),
+		),
+		'tenant' => array(
+			'css' => array('tenant.css'),
+			'js'  => array('tenant.js'),
+		),
+		'billing' => array(
+			'css' => array('billing.css'),
+			'js'  => array('billing.js'),
 		)
 	);
 

@@ -1,12 +1,11 @@
 <?php
-$role = '';
 $logged_in = false;
-if (isset($role)) {
+if($this->session->has_userdata('user_id')){
   $role = $this->session->userdata('role_id');
   $logged_in = true;
 }
 ?>
-<nav class="navbar navbar-expand-lg p-0 navigation mb-5">
+<nav class="navbar navbar-expand-lg p-0 navigation mb-3">
   <div class="container-fluid px-3">
     <div class="collapse navbar-collapse px-5" id="navbarNavDropdown">
       <ul class="navbar-nav w-100 d-flex <?= ($logged_in) ? 'justify-content-between' : ' justify-content-around ' ?> align-items-center ">
