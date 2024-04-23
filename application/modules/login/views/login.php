@@ -24,14 +24,14 @@
                         <div class="col-12 mb-4">
                           <div class="form-outline">
                             <label class="form-label" for="form3Example1">Username</label>
-                            <input type="text" id="loguname" name="Username" class="form-control" />
+                            <input type="text" id="loguname" name="Username" class="form-control rounded-pill" />
 
                           </div>
                         </div>
                         <div class="col-12 mb-4">
                           <div class="form-outline">
                             <label class="form-label" for="form3Example2">Password</label>
-                            <input type="password" id="logpass" name="Password" class="form-control" />
+                            <input type="password" id="logpass" name="Password" class="form-control rounded-pill" />
 
                           </div>
                         </div>

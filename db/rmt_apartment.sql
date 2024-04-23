@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2024 at 03:43 PM
+-- Generation Time: Apr 23, 2024 at 07:09 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -35,6 +35,13 @@ CREATE TABLE `announcement` (
   `date_created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `announcement`
+--
+
+INSERT INTO `announcement` (`announcement_id`, `user_id`, `subject`, `message`, `date_created`) VALUES
+(1, 0, 'Welcome', 'Greetings! We welcome you to out official website. Explore this website\'s features that will ease your home experience.', '2024-04-22 14:29:45');
+
 -- --------------------------------------------------------
 
 --
@@ -43,11 +50,13 @@ CREATE TABLE `announcement` (
 
 CREATE TABLE `bill` (
   `bill_id` int(10) NOT NULL,
+  `tenant_id` int(10) NOT NULL,
   `billing_date` date NOT NULL,
   `electric_kwh` varchar(10) NOT NULL,
   `water_bill` varchar(10) NOT NULL,
   `room_rent` varchar(10) NOT NULL,
   `due_total` varchar(10) NOT NULL,
+  `status` varchar(3) NOT NULL COMMENT '0 - Pending, 1 - Unpaid, 2 - Paid, 3 - With Balance',
   `invoice_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -68,35 +77,23 @@ CREATE TABLE `concern` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role`
---
-
-CREATE TABLE `role` (
-  `role_id` int(10) NOT NULL,
-  `role` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `role`
---
-
-INSERT INTO `role` (`role_id`, `role`) VALUES
-(1, 'Admin'),
-(2, 'Tenant');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `room`
 --
 
 CREATE TABLE `room` (
   `room_number` int(10) NOT NULL,
-  `floor` varchar(2) NOT NULL,
+  `floor` varchar(3) NOT NULL,
   `room_dimension` varchar(50) NOT NULL,
   `room_feature` varchar(50) NOT NULL,
   `description` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `room`
+--
+
+INSERT INTO `room` (`room_number`, `floor`, `room_dimension`, `room_feature`, `description`) VALUES
+(1, '1st', '10x12sqft', 'Studio Type', 'Own CR and sink with exhaust fan');
 
 -- --------------------------------------------------------
 
@@ -108,9 +105,15 @@ CREATE TABLE `tenant` (
   `tenant_id` int(10) NOT NULL,
   `user_id` int(10) NOT NULL,
   `room_number` int(10) NOT NULL,
-  `bill` int(10) NOT NULL,
   `starting_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tenant`
+--
+
+INSERT INTO `tenant` (`tenant_id`, `user_id`, `room_number`, `starting_date`) VALUES
+(1, 1, 1, '2022-01-01');
 
 -- --------------------------------------------------------
 
@@ -120,8 +123,8 @@ CREATE TABLE `tenant` (
 
 CREATE TABLE `user` (
   `user_id` int(10) NOT NULL,
-  `role_id` int(10) NOT NULL,
   `user_info_id` int(10) NOT NULL,
+  `role_id` int(10) NOT NULL COMMENT '1 - Admin, 2 - Tenant',
   `username` varchar(20) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -130,8 +133,9 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `role_id`, `user_info_id`, `username`, `password`) VALUES
-(1, 1, 1, 'Admin', '$2y$10$bCCcYfV/KE10oluinxZCO.ZdHDAsSd/UKR.4dH3NpD7GeVqsNplfq');
+INSERT INTO `user` (`user_id`, `user_info_id`, `role_id`, `username`, `password`) VALUES
+(0, 0, 1, 'Admin', '$2y$10$bCCcYfV/KE10oluinxZCO.ZdHDAsSd/UKR.4dH3NpD7GeVqsNplfq'),
+(1, 1, 2, 'Reymark', '$2y$10$WBnJAAfkSDLABO2iNpHxue2HACTQKhf20g8AH0RE29T.V2k4A6LxW');
 
 -- --------------------------------------------------------
 
@@ -156,7 +160,8 @@ CREATE TABLE `user_info` (
 --
 
 INSERT INTO `user_info` (`user_info_id`, `first_name`, `middle_name`, `last_name`, `birthdate`, `age`, `provincial_address`, `occupation`, `registration_date`) VALUES
-(1, 'Rental', 'Apartment', 'Admin', '2022-01-01', '2', 'San Antonio, Linao', 'Admin', '2024-03-02 06:50:37');
+(0, 'Admin', 'Admin', 'Admin', '2022-01-01', '25', 'San Antonio, Linao', 'Admin', '2024-04-22 14:21:06'),
+(1, 'Reymark', 'Enot', 'Timkang', '2022-01-01', '25', 'San Antonio, Linao', 'Programmer', '2024-04-22 14:11:55');
 
 --
 -- Indexes for dumped tables
@@ -173,7 +178,8 @@ ALTER TABLE `announcement`
 -- Indexes for table `bill`
 --
 ALTER TABLE `bill`
-  ADD PRIMARY KEY (`bill_id`);
+  ADD PRIMARY KEY (`bill_id`),
+  ADD KEY `ibfk_tenant_id` (`tenant_id`);
 
 --
 -- Indexes for table `concern`
@@ -181,12 +187,6 @@ ALTER TABLE `bill`
 ALTER TABLE `concern`
   ADD PRIMARY KEY (`concern_id`),
   ADD KEY `tenant_id` (`tenant_id`);
-
---
--- Indexes for table `role`
---
-ALTER TABLE `role`
-  ADD PRIMARY KEY (`role_id`);
 
 --
 -- Indexes for table `room`
@@ -200,15 +200,13 @@ ALTER TABLE `room`
 ALTER TABLE `tenant`
   ADD PRIMARY KEY (`tenant_id`),
   ADD KEY `user_id` (`user_id`),
-  ADD KEY `room_number` (`room_number`),
-  ADD KEY `bill` (`bill`);
+  ADD KEY `room_number` (`room_number`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`),
-  ADD KEY `role_id` (`role_id`),
   ADD KEY `user_info_id` (`user_info_id`);
 
 --
@@ -225,7 +223,7 @@ ALTER TABLE `user_info`
 -- AUTO_INCREMENT for table `announcement`
 --
 ALTER TABLE `announcement`
-  MODIFY `announcement_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `announcement_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `bill`
@@ -240,22 +238,16 @@ ALTER TABLE `concern`
   MODIFY `concern_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `role`
---
-ALTER TABLE `role`
-  MODIFY `role_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
-  MODIFY `room_number` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `room_number` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tenant`
 --
 ALTER TABLE `tenant`
-  MODIFY `tenant_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `tenant_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -267,7 +259,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user_info`
 --
 ALTER TABLE `user_info`
-  MODIFY `user_info_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_info_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -280,6 +272,12 @@ ALTER TABLE `announcement`
   ADD CONSTRAINT `announcement_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 
 --
+-- Constraints for table `bill`
+--
+ALTER TABLE `bill`
+  ADD CONSTRAINT `ibfk_tenant_id` FOREIGN KEY (`tenant_id`) REFERENCES `tenant` (`tenant_id`);
+
+--
 -- Constraints for table `concern`
 --
 ALTER TABLE `concern`
@@ -290,8 +288,7 @@ ALTER TABLE `concern`
 --
 ALTER TABLE `tenant`
   ADD CONSTRAINT `tenant_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
-  ADD CONSTRAINT `tenant_ibfk_2` FOREIGN KEY (`room_number`) REFERENCES `room` (`room_number`),
-  ADD CONSTRAINT `tenant_ibfk_3` FOREIGN KEY (`bill`) REFERENCES `bill` (`bill_id`);
+  ADD CONSTRAINT `tenant_ibfk_2` FOREIGN KEY (`room_number`) REFERENCES `room` (`room_number`);
 
 --
 -- Constraints for table `user`
