@@ -35,7 +35,6 @@ require dirname(__FILE__).'/Modules.php';
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  **/
-
 class MX_Router extends CI_Router
 {
 	public $module;
@@ -234,27 +233,13 @@ class MX_Router extends CI_Router
 		}
 	}
 
-	// public function set_class($class)
-	// {
-	// 	$suffix = $this->config->item('controller_suffix');
-	// 	if (strpos($class, chr($suffix)) === FALSE)
-	// 	{
-	// 		$class .= $suffix;
-	// 	}
-	// 	parent::set_class($class);
-	// }
-
 	public function set_class($class)
-{
-    $suffix = $this->config->item('controller_suffix');
-    
-    // Check if $suffix is null before using chr()
-    if ($suffix !== null && strpos($class, chr($suffix)) === FALSE)
-    {
-        $class .= chr($suffix);
-    }
-    
-    parent::set_class($class);
-}
-
+	{
+		$suffix = $this->config->item('controller_suffix');
+		if (strpos($class, chr($suffix)) === FALSE)
+		{
+			$class .= $suffix;
+		}
+		parent::set_class($class);
+	}
 }

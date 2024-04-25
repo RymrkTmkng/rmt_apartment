@@ -7,14 +7,16 @@
             <table id="tenant-table" class="table table-dark table-responsive">
                 <thead>
                     <tr>
+                        <th>Last Name</th>
                         <th>First Name</th>
                         <th>Middle Name</th>
-                        <th>Last Name</th>
                         <th>Room</th>
                         <th>Start Date</th>
                         <th>Action</th>
                     </tr>
                 </thead>
+                <tbody>
+                </tbody>
             </table>
         </div>
     </div>

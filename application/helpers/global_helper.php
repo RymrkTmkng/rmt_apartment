@@ -40,20 +40,12 @@
 		}
 	}
 
-	// if(!function_exists('datatables')){
-	// 	function datatables($table, $column_order, $select = "*", $where = "", $join = array(), $limit, $offset, $search, $order,$group = ''){
-	// 		$ci =& get_instance();
-	// 		return $ci->MY_Model->get_datatables($table, $column_order, $select, $where, $join, $limit, $offset, $search, $order,$group);
-	//     }
-	// }
-
-	if (!function_exists('datatables')) {
-		function datatables($table, $column_order, $limit, $offset, $search, $order, $select = "*", $where = "", $join = array(), $group = '') {
+	if(!function_exists('datatables')){
+		function datatables($table, $column_order, $select = "*", $where = "", $join = array(), $limit, $offset, $search, $order,$group = ''){
 			$ci =& get_instance();
-			return $ci->MY_Model->get_datatables($table, $column_order, $select, $where, $join, $limit, $offset, $search, $order, $group);
-		}
+			return $ci->MY_Model->get_datatables($table, $column_order, $select, $where, $join, $limit, $offset, $search, $order,$group);
+	    }
 	}
-	
 
 	if(!function_exists('insert')) {
 		function insert($table,$data){

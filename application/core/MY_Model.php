@@ -7,7 +7,7 @@ class MY_Model extends CI_Model {
         parent::__construct();
     }
 
-    public function raw($sql,$result = 'array'){
+    public function raw($sql,$resut = 'array'){
         $query = $this->db->query($sql);
         switch ($result) {
             case 'array':
@@ -74,8 +74,7 @@ class MY_Model extends CI_Model {
         }
     }
 
-    // public function get_datatables($table, $column_order, $select = "*", $where = "", $join = array(), $limit, $offset, $search, $order,$group = '')
-    public function get_datatables($table, $column_order, $limit, $offset, $search, $order, $select = "*", $where = "", $join = array(), $group = ''){
+    public function get_datatables($table, $column_order, $select = "*", $where = "", $join = array(), $limit, $offset, $search, $order,$group = ''){
 	  	$this->db->from($table);
 	  	if($select){
 	  		$this->db->select($select);
