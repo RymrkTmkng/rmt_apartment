@@ -7,7 +7,7 @@ class MY_Model extends CI_Model {
         parent::__construct();
     }
 
-    public function raw($sql,$resut = 'array'){
+    public function raw($sql,$result = 'array'){
         $query = $this->db->query($sql);
         switch ($result) {
             case 'array':

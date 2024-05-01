@@ -143,7 +143,7 @@ function swalThen(title = '', icon = 'success', then = null){
     icon: icon,
     title: title,
     showConfirmButton: false,
-    timer: 1500
+    timer: 2000
     }).then(then);
 }
 

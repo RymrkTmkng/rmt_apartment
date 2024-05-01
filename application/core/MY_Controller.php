@@ -34,15 +34,15 @@ class MY_Controller extends MX_Controller
 	public function __construct()
 	{
 		$route = $this->router->fetch_class();
-		// if($route == 'login'){
-		// 	if($this->session->has_userdata('logged_in')){
-		// 		redirect(base_url());
-		// 	}
-		// } else {
-		// 	if(!$this->session->has_userdata('logged_in')){
-		// 		redirect(base_url('login'));
-		// 	}
-		// }
+		if($route == 'login'){
+			if($this->session->has_userdata('user_id')){
+				redirect(base_url());
+			}
+		} else {
+			if(!$this->session->has_userdata('user_id')){
+				redirect(base_url('login'));
+			}
+		}
 	}
 
 	public function load_page($page, $data = array())
