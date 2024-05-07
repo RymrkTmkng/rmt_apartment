@@ -1,12 +1,15 @@
 <?php
 $logged_in = false;
-if($this->session->has_userdata('user_id')){
+if ($this->session->has_userdata('user_id')) {
   $role = $this->session->userdata('role_id');
   $logged_in = true;
 }
 ?>
 <nav class="navbar navbar-expand-lg p-0 navigation mb-3">
-  <div class="container-fluid px-3">
+  <div class="container-fluid p-2">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="collapse navbar-collapse px-5" id="navbarNavDropdown">
       <ul class="navbar-nav w-100 d-flex <?= ($logged_in) ? 'justify-content-between' : ' justify-content-around ' ?> align-items-center ">
         <li class="nav-item">
@@ -31,7 +34,7 @@ if($this->session->has_userdata('user_id')){
           </li>
         <?php else : ?>
           <li class="nav-item compname">
-            <h1 class="nav-link text-warning" style="font-size:3rem !important"><?=$page_title?></h1>
+            <h1 class="nav-link text-warning" style="font-size:3rem !important"><?= $page_title ?></h1>
           </li>
         <?php endif; ?>
 
@@ -40,10 +43,10 @@ if($this->session->has_userdata('user_id')){
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="bi bi-person-circle"> </i><?= $this->session->userdata('username') ?>
             </a>
-            <ul class="dropdown-menu bg-dark">
+            <ul class="dropdown-menu accountnav">
               <li><a class="dropdown-item" href="#">Profile</a></li>
               <li>
-                <hr class="dropdown-divider bg-light">
+                <hr class="dropdown-divider bg-light ">
               </li>
               <li><a class="dropdown-item" href="<?= base_url('logout') ?>" class="login-logout">Logout</a></li>
             </ul>

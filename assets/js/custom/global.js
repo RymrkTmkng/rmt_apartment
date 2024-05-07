@@ -1,20 +1,26 @@
-
+var spinner = document.querySelector('.spinner-container');
 var res = null
 
-function sendAjaxFormData(param = {}, isReturn = true){
-    if(isReturn === false){
+
+window.addEventListener("load", () => {
+    setTimeout(function () {
+        spinner.classList.replace('spinner-container', 'spinner-container-remove');
+    }, 1000);
+});
+function sendAjaxFormData(param = {}, isReturn = true) {
+    if (isReturn === false) {
         var return_response = null;
         $.ajax({
-            url:param.url,
+            url: param.url,
             type: 'post',
-            data:param.data,
-            async:false,
+            data: param.data,
+            async: false,
             processData: false,
             contentType: false,
-            dataType:'json',
-            success:function(response){
+            dataType: 'json',
+            success: function (response) {
                 return_response = response;
-            },error:function(e){
+            }, error: function (e) {
                 console.log(e);
             }
         });
@@ -22,24 +28,24 @@ function sendAjaxFormData(param = {}, isReturn = true){
     } else {
         var return_data = null;
         $.ajax({
-            url:param.url,
+            url: param.url,
             type: 'post',
-            data:param.data,
-            async:false,
-            dataType:'json',
-            success:function(response){
+            data: param.data,
+            async: false,
+            dataType: 'json',
+            success: function (response) {
                 return_data = response;
-            },error:function(e){
+            }, error: function (e) {
                 console.log(e);
             }
         });
 
-        if(isReturn){
+        if (isReturn) {
             return return_data;
         }
     }
 }
-function sendAjax(url, data ={}){
+function sendAjax(url, data = {}) {
     $.ajax({
         method: 'post',
         url: url,
@@ -47,27 +53,27 @@ function sendAjax(url, data ={}){
         dataType: 'json',
         cache: false,
         async: false,
-        success: function(response){
+        success: function (response) {
             res = response
         },
-        error: function(error){
+        error: function (error) {
             res = error
         }
     })
     return res
 }
 
-function getAjax(url){
+function getAjax(url) {
     $.ajax({
         type: 'get',
         url: url,
         cache: false,
         async: false,
         dataType: 'json',
-        success: function(response){
+        success: function (response) {
             res = response
         },
-        error: function(error){
+        error: function (error) {
             res = error
         }
     })
@@ -88,7 +94,7 @@ function ajaxs(url, form) {
             res = (data);
         },
         error: function (xhr) {
-            
+
         },
     });
     return res;
@@ -101,7 +107,7 @@ function ajax(url, form) {
         url: url,
         data: form,
         async: false,
-        processData: false, 
+        processData: false,
         contentType: false,
         beforeSend: function () {
         },
@@ -109,7 +115,7 @@ function ajax(url, form) {
             res = JSON.parse(data);
         },
         error: function (xhr) {
-            
+
         },
     });
     return res;
@@ -131,38 +137,38 @@ function ajax1(url, form) {
             res = JSON.parse(data);
         },
         error: function (xhr) {
-            
+
         },
     });
     return res;
 }
 
-function swalThen(title = '', icon = 'success', then = null){
+function swalThen(title = '', icon = 'success', then = null) {
     Swal.fire({
-    position: 'center',
-    icon: icon,
-    title: title,
-    showConfirmButton: false,
-    timer: 2000
+        position: 'center',
+        icon: icon,
+        title: title,
+        showConfirmButton: false,
+        timer: 2000
     }).then(then);
 }
 
-function toast(title, icon = 'success', iconColor = 'green'){
+function toast(title, icon = 'success', iconColor = 'green') {
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-right',
         iconColor: iconColor,
         customClass: {
-          popup: 'colored-toast'
+            popup: 'colored-toast'
         },
         showConfirmButton: false,
         timer: 1500,
         timerProgressBar: true
-      })
-      Toast.fire({
+    })
+    Toast.fire({
         icon: icon,
         title: title
-      })
+    })
 }
 
 function toastSuccess(msg) {
@@ -186,7 +192,7 @@ function toastWarning(msg) {
 }
 
 
-function newForm(url, data){
+function newForm(url, data) {
     $.ajax({
         method: 'post',
         data: data,
@@ -197,17 +203,17 @@ function newForm(url, data){
         enctype: 'multipart/form-data',
         processData: false,
         contentType: false,
-        success: function(response){
+        success: function (response) {
             res = response
         },
-        error: function(err){
+        error: function (err) {
             res = err
         }
     })
     return res
 }
 
-  var toastMixin = Swal.mixin({
+var toastMixin = Swal.mixin({
     toast: true,
     icon: 'success',
     title: 'General Title',
@@ -217,7 +223,9 @@ function newForm(url, data){
     timer: 3000,
     timerProgressBar: true,
     didOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
-  });
+});
+
+

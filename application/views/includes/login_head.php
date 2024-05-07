@@ -11,4 +11,5 @@
 </head>
 
 <body>
+    <?php include 'spinner.php'?>
     <div class="container-fluid">

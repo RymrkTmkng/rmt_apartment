@@ -11,6 +11,6 @@
     __load_assets__($__assets__, 'css');
     ?>
 </head>
-
 <body>
+    <?php include 'spinner.php';?>
 <div class="container-fluid p-0">
