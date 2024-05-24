@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2024 at 01:02 PM
+-- Generation Time: May 24, 2024 at 02:59 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -148,10 +148,11 @@ CREATE TABLE `user_info` (
   `first_name` varchar(50) NOT NULL,
   `middle_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
-  `birthdate` date NOT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `birthdate` date DEFAULT NULL,
   `age` varchar(2) NOT NULL,
   `provincial_address` varchar(100) NOT NULL,
-  `occupation` varchar(20) NOT NULL,
+  `occupation` varchar(20) DEFAULT NULL,
   `registration_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -159,9 +160,11 @@ CREATE TABLE `user_info` (
 -- Dumping data for table `user_info`
 --
 
-INSERT INTO `user_info` (`user_info_id`, `first_name`, `middle_name`, `last_name`, `birthdate`, `age`, `provincial_address`, `occupation`, `registration_date`) VALUES
-(0, 'Admin', 'Admin', 'Admin', '2022-01-01', '25', 'San Antonio, Linao', 'Admin', '2024-04-22 14:21:06'),
-(1, 'Reymark', 'Enot', 'Timkang', '2022-01-01', '25', 'San Antonio, Linao', 'Programmer', '2024-04-22 14:11:55');
+INSERT INTO `user_info` (`user_info_id`, `first_name`, `middle_name`, `last_name`, `email`, `birthdate`, `age`, `provincial_address`, `occupation`, `registration_date`) VALUES
+(0, 'Admin', 'Admin', 'Admin', '', '2022-01-01', '25', 'San Antonio, Linao', 'Admin', '2024-04-22 14:21:06'),
+(1, 'Reymark', 'Enot', 'Timkang', '', '2022-01-01', '25', 'San Antonio, Linao', 'Programmer', '2024-05-01 06:28:07'),
+(16, 'test', 'test', 'test', NULL, '0002-02-14', '', 'test', 'test', '2024-05-22 00:24:53'),
+(17, 'test', 'twadawd', 'dwad', NULL, '0002-02-14', '', 'test', 'test', '2024-05-22 00:25:28');
 
 --
 -- Indexes for dumped tables
@@ -259,7 +262,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user_info`
 --
 ALTER TABLE `user_info`
-  MODIFY `user_info_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_info_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables
