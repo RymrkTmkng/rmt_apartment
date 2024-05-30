@@ -8,47 +8,47 @@
       </div>
       <div class="modal-body ">
         <form id="addTenantinfoform" class="row needs-validation" novalidate>
-          <div class="col-sm-6 mb-3 ">
+          <div class="col-sm-6 mb-3">
             <label for="first_name" class="form-label">First Name</label>
-            <input type="text" class="form-control" name="first_name">
+            <input type="text" class="form-control rounded-pill" name="first_name">
             <div class="valid-feedback">
             </div>
           </div>
           <div class="col-sm-6 mb-3 ">
             <label for="middle_name" class="form-label">Middle Name</label>
-            <input type="text" class="form-control" name="middle_name">
+            <input type="text" class="form-control rounded-pill" name="middle_name">
             <div class="valid-feedback">
             </div>
           </div>
           <div class="col-sm-6 mb-3 ">
             <label for="last_name" class="form-label">Last Name</label>
-            <input type="text" class="form-control" name="last_name">
+            <input type="text" class="form-control rounded-pill" name="last_name">
             <div class="valid-feedback">
             </div>
           </div>
           <div class="col-sm-6 mb-3 ">
             <label for="start_date" class="form-label">Birthdate</label>
-            <input type="date" class="form-control" name="birthdate">
+            <input type="date" class="form-control rounded-pill" name="birthdate">
             <div class="valid-feedback">
             </div>
           </div>
           <div class="col-12 mb-3 ">
             <label for="provincial_address" class="form-label">Occupation</label>
-            <input type="text" class="form-control" name="occupation">
+            <input type="text" class="form-control rounded-pill" name="occupation">
             <div class="valid-feedback">
             </div>
           </div>
           <div class="col-12 mb-3 ">
             <label for="provincial_address" class="form-label">Provincial Address</label>
-            <input type="text" class="form-control" name="provincial_address">
+            <input type="text" class="form-control rounded-pill" name="provincial_address">
             <div class="valid-feedback">
             </div>
           </div>
       </div>
       <div class="modal-footer">
         <div class="col-12 text-end ">
-          <button type="submit" class="btn btn-success">Save</button>
-          <button type="button" data-bs-dismiss="modal" class="btn btn-secondary">Cancel </button>
+          <button type="submit" class="btn btn-success rounded-pill tenantbtninfonext">Next <i class="bi bi-arrow-right-short"></i></button>
+          <button type="button" data-bs-dismiss="modal" class="btn btn-secondary rounded-pill">Cancel </button>
         </div>
       </div>
       </form>
@@ -69,31 +69,31 @@
           <input type="hidden" value="" name="user_id">
           <div class="col-sm-12 mb-3">
             <label for="first_name" class="form-label">First Name</label>
-            <input type="text" class="form-control" name="first_name">
+            <input type="text" class="form-control rounded-pill" name="first_name">
             <div class="valid-feedback">
             </div>
           </div>
           <div class="col-sm-12 mb-3">
             <label for="middle_name" class="form-label">Middle Name</label>
-            <input type="text" class="form-control" name="middle_name">
+            <input type="text" class="form-control rounded-pill" name="middle_name">
             <div class="valid-feedback">
             </div>
           </div>
           <div class="col-sm-12 mb-3">
             <label for="last_name" class="form-label">Last Name</label>
-            <input type="text" class="form-control" name="last_name">
+            <input type="text" class="form-control rounded-pill" name="last_name">
             <div class="valid-feedback">
             </div>
           </div>
           <div class="col-sm-6 mb-3">
             <label for="room" class="form-label">Room</label>
-            <input type="text" inputmode="numeric" class="form-control" name="room_number">
+            <input type="text" inputmode="numeric" class="form-control rounded-pill" name="room_number">
             <div class="valid-feedback">
             </div>
           </div>
           <div class="col-sm-6 mb-3">
             <label for="start_date" class="form-label">Starting Date</label>
-            <input type="date" class="form-control" name="starting_date">
+            <input type="date" class="form-control rounded-pill" name="starting_date">
             <div class="valid-feedback">
             </div>
           </div>
