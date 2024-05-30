@@ -4,9 +4,13 @@ var res = null
 
 window.addEventListener("load", () => {
     setTimeout(function () {
-        spinner.classList.replace('spinner-container', 'spinner-container-remove');
-    }, 1000);
+        spinner.style.opacity = 0;
+        setTimeout(() => {
+            spinner.classList.replace('spinner-container', 'spinner-container-remove');
+        }, 500); // Wait for the transition to complete (500 milliseconds)
+    }, 1000); // Wait for 1 second before starting the fade-out
 });
+
 function sendAjaxFormData(param = {}, isReturn = true) {
     if (isReturn === false) {
         var return_response = null;

@@ -95,13 +95,14 @@
     z-index: 99999;
     background-color: black;
     opacity: 1;
-    transition: all 500ms;
+    transition: opacity 0.5s ease;
     /* animation: slideAndFade 5s cubic-bezier(0.23, 1, 0.32, 1) 1s forwards; */
 }
 
 .spinner-container-remove {
     opacity: 0;
     display: none;
+    pointer-events: none;
 }
 
 .spinner {
