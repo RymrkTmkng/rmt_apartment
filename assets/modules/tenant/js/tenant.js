@@ -127,29 +127,32 @@ $(document).ready(function(){
     }
   });
 
-  $(document).on('click','#nextformTenantInfo',function(e){
-    e.preventDefault();
+  // $(document).on('click','#nextformTenantInfo',function(e){
+  //   e.preventDefault();
 
-    if ($('.tenantInfo').is(':visible')) {
-      $('.tenantInfo').fadeOut(500);
-      $('.user_credsAdd').fadeIn(500);
-    }else{
-      $('.tenantInfo').fadeIn(500);
-      $('.user_credsAdd').fadeOut(500);
-    }
-  });
+  //   if ($('.tenantInfo').is(':visible')) {
+  //     $('.tenantInfo').fadeOut(500);
+  //     $('.user_credsAdd').fadeIn(500);
+  //   }else{
+  //     $('.tenantInfo').fadeIn(500);
+  //     $('.user_credsAdd').fadeOut(500);
+  //   }
+  // });
 
   $('#addTenantinfoform').on('submit',function(e){
     e.preventDefault();
-
     let url = `${base_url}tenant/addTenantInfo`;
     let formdata = new FormData($(this)[0]);
 
     let res = ajax(url,formdata);
 
-    if (res.success) {
-      
+    if (res) {
+      swalThen(res.message,res.icon,() => {
+        $('.tenant_user_info').modal('hide').fadeOut(500);
+        $('.tenant_user_creds').modal('show').hide().fadeIn(500);
+      })
     }
   });
+
 
 });

@@ -83,6 +83,20 @@ class Tenant extends MY_Controller
         json($tenant);
     }
 
+    public function getUserInfoByName($fn, $mn, $ln)
+    {
+        $option['select'] = 'user_info_id';
+        $option['where']  = array(
+            'first_name'  => $fn,
+            'middle_name' => $mn,
+            'last_name'   => $ln
+        );
+
+        $info_id = getrow('user_info', $option, 'row');
+
+        return $info_id;
+    }
+
     public function addTenantInfo()
     {
         $response = array(
@@ -90,22 +104,81 @@ class Tenant extends MY_Controller
             'message' => 'Unknown error, please try again !',
             'icon'    => 'info'
         );
-
         $post = $this->input->post();
         $input = array();
         foreach ($post as $field => $value) {
-            $this->form_validation->set_rules($field, 'required');
             $input[$field] = trim($value);
         }
 
-        $result = insert('user_info',$input);
+        $infocheck = $this->getUserInfoByName($input['first_name'], $input['middle_name'], $input['last_name']);
+
+        if ($infocheck) {
+            $response = array(
+                'success' => false,
+                'message' => 'User already Exist!',
+                'icon'    => 'info'
+            );
+            exit;
+        }
+
+        $result = insert('user_info', $input);
+
         if ($result) {
-           
-           $response = array(
-            'success' => true,
-            'message' => '',
-            'icon' => 'success'
-           );
+
+            $response = array(
+                'success' => true,
+                'message' => 'Tenant Info Saved!',
+                'icon' => 'success'
+            );
+        }
+
+        json($response);
+    }
+
+    public function checkUsername($un){
+
+        $option['select'] = '*';
+        $option['where'] = array(
+            'username' => $un
+        );
+
+        $result = getrow('user',$option,'count');
+
+        return $result;
+    }
+
+    public function addUserCreds(){
+
+        $response = array(
+            'success' => false,
+            'message' => 'Unknown Error, Please try again!',
+            'icon'    => 'info'
+        );
+
+        $post = array();
+        foreach($this->input->post() as $key => $value){
+            $post[$key] = trim($value);
+        }
+        $userCount = $this->checkUsername($post['username']);
+        if ($userCount > 0) {
+            $response = array(
+                'success' => false,
+                'message' => 'Username already exist!',
+                'icon'    => 'info'
+            );
+        }else{
+            if (strlen($post['password'] > 8 && $post['password'] === $post['confirm_password'])) {
+                
+                $creds = insert('user',$post);
+
+                if ($creds) {
+                    $response = array(
+                        'success' => true,
+                        'message' => 'Credentials successfully saved!',
+                        'icon'    => 'success'
+                    );
+                }
+            }
         }
         json($response);
     }

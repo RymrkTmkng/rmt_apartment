@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2024 at 02:59 PM
+-- Generation Time: May 16, 2024 at 12:42 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -163,8 +163,8 @@ CREATE TABLE `user_info` (
 INSERT INTO `user_info` (`user_info_id`, `first_name`, `middle_name`, `last_name`, `email`, `birthdate`, `age`, `provincial_address`, `occupation`, `registration_date`) VALUES
 (0, 'Admin', 'Admin', 'Admin', '', '2022-01-01', '25', 'San Antonio, Linao', 'Admin', '2024-04-22 14:21:06'),
 (1, 'Reymark', 'Enot', 'Timkang', '', '2022-01-01', '25', 'San Antonio, Linao', 'Programmer', '2024-05-01 06:28:07'),
-(16, 'test', 'test', 'test', NULL, '0002-02-14', '', 'test', 'test', '2024-05-22 00:24:53'),
-(17, 'test', 'twadawd', 'dwad', NULL, '0002-02-14', '', 'test', 'test', '2024-05-22 00:25:28');
+(4, 'dwadaw', 'dawdwa', 'dwadwa', NULL, '0242-12-04', '', 'dwadawd', '2dwadwa', '2024-05-01 07:28:39'),
+(5, 'dwadaw', 'dawdwa', 'dwadwa', NULL, '0242-12-04', '', 'dwadawd', '2dwadwa', '2024-05-01 07:28:44');
 
 --
 -- Indexes for dumped tables
@@ -262,7 +262,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user_info`
 --
 ALTER TABLE `user_info`
-  MODIFY `user_info_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `user_info_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
