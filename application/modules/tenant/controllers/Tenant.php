@@ -12,6 +12,16 @@ class Tenant extends MY_Controller
         $this->load_page('tenant', $data);
     }
 
+    public function getRoomList()
+    {
+
+        $option['select'] = '';
+        $option['where']  = array();
+
+        $list = getrow('room', $option, 'array');
+
+        return $list;
+    }
     public function getTenantList()
     {
 
@@ -116,7 +126,7 @@ class Tenant extends MY_Controller
             $response = array(
                 'success' => false,
                 'message' => 'User already Exist!',
-                'icon'    => 'info'
+                'icon'       => 'info'
             );
             exit;
         }
@@ -128,27 +138,29 @@ class Tenant extends MY_Controller
             $response = array(
                 'success' => true,
                 'message' => 'Tenant Info Saved!',
-                'icon' => 'success'
+                'icon'    => 'success',
+                'id'      => $result
             );
         }
 
         json($response);
     }
 
-    public function checkUsername($un){
+    public function checkUsername($un)
+    {
 
         $option['select'] = '*';
         $option['where'] = array(
             'username' => $un
         );
 
-        $result = getrow('user',$option,'count');
+        $result = getrow('user', $option, 'count');
 
         return $result;
     }
 
-    public function addUserCreds(){
-
+    public function addUserCreds()
+    {
         $response = array(
             'success' => false,
             'message' => 'Unknown Error, Please try again!',
@@ -156,30 +168,41 @@ class Tenant extends MY_Controller
         );
 
         $post = array();
-        foreach($this->input->post() as $key => $value){
+
+        foreach ($this->input->post() as $key => $value) {
             $post[$key] = trim($value);
         }
+
         $userCount = $this->checkUsername($post['username']);
-        if ($userCount > 0) {
+
+        if ($userCount === 0) {
+            $passCount = strlen($post['password']);
+            if ($passCount >= 8) {
+
+                if ($post['password'] == $post['confirm_password']) {
+                    unset($post['confirm_password']);
+                    $post['password'] = password_hash($post['password'], PASSWORD_DEFAULT);
+
+                    $creds = insert('user', $post);
+
+                    if ($creds) {
+                        $response = array(
+                            'success' => true,
+                            'message' => 'Credentials successfully saved!',
+                            'icon'    => 'success',
+                            'user_id' => $creds
+                        );
+                    }
+                }
+            }
+        } else {
             $response = array(
                 'success' => false,
                 'message' => 'Username already exist!',
                 'icon'    => 'info'
             );
-        }else{
-            if (strlen($post['password'] > 8 && $post['password'] === $post['confirm_password'])) {
-                
-                $creds = insert('user',$post);
-
-                if ($creds) {
-                    $response = array(
-                        'success' => true,
-                        'message' => 'Credentials successfully saved!',
-                        'icon'    => 'success'
-                    );
-                }
-            }
         }
+
         json($response);
     }
 

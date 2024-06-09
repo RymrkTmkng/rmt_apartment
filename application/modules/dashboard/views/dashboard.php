@@ -2,7 +2,7 @@
     <div class="row parent-dashrow">
         <div class="col-sm-12">
             <div class="row dashrow">
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <a href="<?= base_url('room') ?>" class="dashcardlink">
                         <div class="card mb-3 border-none shadow rounded-5 dashcard">
                             <div class="card-body">
@@ -12,7 +12,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <a href="<?= base_url('tenant') ?>" class="dashcardlink">
                         <div class="card mb-3 border-none shadow rounded-5 dashcard">
                             <div class="card-body">
@@ -22,7 +22,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <a href="<?= base_url('billing') ?>" class="dashcardlink">
                         <div class="card mb-3 border-none shadow rounded-5 dashcard">
                             <div class="card-body">
@@ -36,7 +36,7 @@
         </div>
         <div class="col-sm-12">
             <div class="row dashrow">
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <a href="javascript:void(0);" class="dashcardlink">
                         <div class="card mb-3 border-none shadow rounded-5 dashcard">
                             <div class="card-body">
@@ -46,7 +46,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <a href="javascript:void(0);" class="dashcardlink">
                         <div class="card mb-3 border-none shadow rounded-5 dashcard">
                             <div class="card-body">
@@ -56,7 +56,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <a href="javascript:void(0);" class="dashcardlink">
                         <div class="card mb-3 border-none shadow rounded-5 dashcard">
                             <div class="card-body">

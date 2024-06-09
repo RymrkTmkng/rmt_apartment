@@ -1,0 +1,42 @@
+Admin can:
+
+- login & logout
+- View List of Tenants
+- Add Tenant
+- Edit Tenant
+- Delete Tenant
+- Add User
+- Edit User
+- Delete User
+- View list of User
+- Create Bill
+- Edit Bill
+- Delete Bill
+- View List of Bills
+- Add Room
+- Edit Room Info
+- Add Announcement
+- Edit Announcement
+- Delete Announcement
+- Add Rules
+- Edit Rules
+- Delete Rules
+- View Rules
+- View list of Concerns
+- Edit Concern status
+
+Tenant can:
+
+- login & logout
+- forgot password
+- Edit Account Info
+- Update Password
+- View Billing History
+- View Profile
+- Edit Profile
+- View Announcement
+- Add emoji as read receipt
+- View Rules
+- Add Concern
+- View Concern Status
+
