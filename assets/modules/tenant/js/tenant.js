@@ -24,7 +24,7 @@ var tenant_list = $("#tenant-table").DataTable({
         var btn = "";
 
         btn += `<a href='javascript:void(0);' class='btn btn-sm btn-warning rounded-pill mx-1 editTenantbtn' data-id="${data}" data-user="${row.user_id}"><i class="bi bi-pencil"></i></a>`;
-        btn += `<a href='javascript:void(0);' class='btn btn-sm btn-danger rounded-pill mx-1 deleteTenantbtn' data-id="${data}"><i class="bi bi-trash"></i></a>`;
+        btn += `<a href='javascript:void(0);' class='btn btn-sm btn-danger rounded-pill mx-1 deleteTenantbtn' data-user="${row.user_id}"><i class="bi bi-trash"></i></a>`;
 
         return btn;
       },
@@ -58,6 +58,15 @@ $(document).ready(function () {
   $(document).on("click", ".deleteTenantbtn", function (e) {
     e.preventDefault();
     $(".delTenantModal").modal("show").hide().fadeIn(500);
+
+    let user_id = $(this).data("user");
+    let url = `${base_url}tenant/getUserInfoId/${user_id}`;
+    let info = getAjax(url);
+
+    if (info != 0) {
+      $("#delTenantForm input[name='user_info_id']").val(info.user_info_id);
+      $("#delTenantForm input[name='room_number']").val(info.room_number);
+    }
   });
 
   $("#addTenantmodalbtn").on("click", function (e) {
@@ -139,6 +148,7 @@ $(document).ready(function () {
     let url = `${base_url}tenant/addUserCreds`;
     let formdata = new FormData($(this)[0]);
     let res = ajax(url, formdata);
+    let rooms = getAjax(`${base_url}tenant/getRoomList`);
 
     if (res) {
       swalThen(res.message, res.icon, () => {
@@ -146,6 +156,51 @@ $(document).ready(function () {
           $(".tenant_user_creds").modal("hide").fadeOut(500);
           $(".tenant_room_info").modal("show").hide().fadeIn(500);
           $("#addTenantRoomInfo input[name='user_id']").val(res.user_id);
+          const select = $("#addTenantRoomInfo select[name='room_number']");
+
+          $.each(rooms, function (index, value) {
+            select.append(
+              `<option value=${value.room_number}>${value.room_number}</option>`
+            );
+          });
+        }
+      });
+    }
+  });
+
+  $("#addTenantRoomInfo").on("submit", function (e) {
+    e.preventDefault();
+
+    if (!validateForm($(this))) {
+      return;
+    }
+
+    let url = `${base_url}tenant/addTenantRoomInfo`;
+    let formdata = new FormData($(this)[0]);
+    let res = ajax(url, formdata);
+
+    if (res) {
+      swalThen(res.message, res.icon, () => {
+        if (res.success) {
+          $(".tenant_room_info").modal("hide").fadeOut(500);
+          tenant_list.ajax.reload();
+        }
+      });
+    }
+  });
+
+  $("#delTenantForm").on("submit", function (e) {
+    e.preventDefault();
+
+    let url = `${base_url}tenant/deleteTenant`;
+    let formdata = new FormData($(this)[0]);
+    let res = ajax(url, formdata);
+
+    if (res) {
+      swalThen(res.message, res.icon, () => {
+        if (res.success) {
+          $(".delTenantModal").modal("hide").fadeOut(500);
+          tenant_list.ajax.reload();
         }
       });
     }

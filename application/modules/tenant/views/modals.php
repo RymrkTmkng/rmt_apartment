@@ -1,5 +1,5 @@
 <!--Add Tenant Info-->
-<div class="modal tenant_user_info" tabindex="-1">
+<div class="modal tenant_user_info" data-bs-backdrop="static" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header text-bg-dark">
@@ -37,6 +37,13 @@
             </div>
           </div>
           <div class="col-12 mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control rounded-pill" name="email" required>
+            <div class="invalid-feedback">
+              Please enter email address.
+            </div>
+          </div>
+          <div class="col-12 mb-3">
             <label for="occupation" class="form-label">Occupation</label>
             <input type="text" class="form-control rounded-pill" name="occupation" required>
             <div class="invalid-feedback">
@@ -62,7 +69,7 @@
   </div>
 </div>
 <!--Add Tenant Login Credentials-->
-<div class="modal tenant_user_creds" tabindex="-1">
+<div class="modal tenant_user_creds" data-bs-backdrop="static" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header text-bg-dark">
@@ -106,7 +113,7 @@
   </div>
 </div>
 <!--Add Tenant Room Info-->
-<div class="modal tenant_room_info" tabindex="-1">
+<div class="modal tenant_room_info" data-bs-backdrop="static" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header text-bg-dark">
@@ -120,15 +127,6 @@
             <label for="Room Number" class="form-label">Room Number</label>
             <select class="form-control rounded-pill" name="room_number" id="roomnum" required>
               <option value="" selected disabled>Select Room Number</option>
-              <?php
-              $i = 1;
-
-              while ($i != 17) :
-              ?>
-                <option value="<?= $i ?>"><?= $i ?></option>
-              <?php
-                $i++;
-              endwhile; ?>
             </select>
             <div class="invalid-feedback">
               Please select a room number
@@ -152,7 +150,7 @@
   </div>
 </div>
 <!--Edit Tenant-->
-<div class="modal editTenant" tabindex="-1">
+<div class="modal editTenant" data-bs-backdrop="static" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header text-bg-dark">
@@ -197,8 +195,8 @@
       </div>
       <div class="modal-footer">
         <div class="col-12 text-end">
-          <button type="submit" id="saveupdateTenantbtn" class="btn btn-success">Save</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" id="saveupdateTenantbtn" class="btn btn-success rounded-pill">Save</button>
+          <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Cancel</button>
         </div>
       </div>
       </form>
@@ -206,20 +204,25 @@
   </div>
 </div>
 <!--Delete Tenant-->
-<div class="modal delTenantModal" tabindex="-1">
+<div class="modal delTenantModal" data-bs-backdrop="static" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header text-bg-danger bg-gradient">
-        <h5 class="modal-title">Confirm Deletion</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <h5>Are you sure you want to delete this Tenant?</h5>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger rounded-pill">Delete</button>
-        <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Cancel</button>
-      </div>
+      <form id="delTenantForm">
+        <div class="modal-header text-bg-danger bg-gradient">
+          <h5 class="modal-title">Confirm Deletion</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h5>Are you sure you want to delete this Tenant?</h5>
+
+          <input type="hidden" name="user_info_id" value="">
+          <input type="hidden" name="room_number" value="">
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger rounded-pill ">Delete</button>
+          <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

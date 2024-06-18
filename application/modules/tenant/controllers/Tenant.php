@@ -15,12 +15,14 @@ class Tenant extends MY_Controller
     public function getRoomList()
     {
 
-        $option['select'] = '';
-        $option['where']  = array();
+        $option['select'] = 'room_number';
+        $option['where']  = array(
+            'status' => '= 0'
+        );
 
-        $list = getrow('room', $option, 'array');
+        $list = getrow('room', $option);
 
-        return $list;
+        json($list);
     }
     public function getTenantList()
     {
@@ -206,6 +208,49 @@ class Tenant extends MY_Controller
         json($response);
     }
 
+    public function addTenantRoomInfo()
+    {
+
+        $response = array(
+            'success' => false,
+            'message' => 'Unknown error, please try again.',
+            'icon'    => 'info'
+        );
+
+        $post = $this->input->post();
+        $input = array();
+
+        foreach ($post as $key => $value) {
+            $input[$key] = trim($value);
+        }
+
+        $result = insert('tenant', $input);
+
+        if ($result) {
+            $response = array(
+                'success' => true,
+                'message' => 'Tenant Successfully Added',
+                'icon'    => 'success'
+            );
+        }
+
+        if ($response['success'] = true) {
+
+            $room_number = $input['room_number'];
+            $set = array(
+                'status' => '1'
+            );
+            $where = array(
+                'room_number' => $room_number
+            );
+
+            update('room', $set, $where);
+        }
+
+
+        json($response);
+    }
+
     public function updateTenant()
     {
 
@@ -254,6 +299,71 @@ class Tenant extends MY_Controller
             $response = array(
                 'success' => true,
                 'message' => 'Updated successfully',
+                'icon'    => 'success'
+            );
+        }
+
+        json($response);
+    }
+
+    public function getUserInfoId($id)
+    {
+        $option['select'] = 'user_info_id';
+        $option['where']  = array(
+            'user_id' => $id
+        );
+
+        $info_id = getrow('user', $option, 'row');
+
+        if ($info_id) {
+            $option2['select'] = 'room_number';
+            $option2['where']  = array(
+                'user_id' => $id
+            );
+
+            $room_num = getrow('tenant', $option2, 'row');
+        }
+
+        $res = array(
+            'user_info_id' => $info_id->user_info_id,
+            'room_number'  => $room_num->room_number
+        );
+
+        json($res);
+    }
+
+    public function deleteTenant()
+    {
+        $response = array(
+            'success' => false,
+            'message' => 'Unknown error, please try again',
+            'icon'    => 'info'
+        );
+
+        $info_id = $this->input->post('user_info_id');
+        $room_num = $this->input->post('room_number');
+
+        $where = array(
+            "user_info_id" => $info_id
+        );
+
+        $res = delete('user_info', $where);
+
+        $set = array(
+            'status' => '0'
+        );
+        $where = array(
+            'room_number' => $room_num
+        );
+
+        $update = update('room', $set, $where);
+
+
+        if ($res && $update) {
+
+            $response = array(
+                'success' => true,
+                'message' => 'Tenant successfully deleted',
                 'icon'    => 'success'
             );
         }
